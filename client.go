@@ -10,30 +10,30 @@ import (
 	"strings"
 )
 
-// APIClientOptions contains the option for the API Client
-type APIClientOptions struct {
+// Options contains the option for the API Client
+type Options struct {
 	BaseURL string
 }
 
 // URLParams is used to add reuqest params to the URL
 type URLParams map[string]string
 
-// GetDefaultAPIClientOptions returns the default options for the API Client
-func GetDefaultAPIClientOptions() *APIClientOptions {
-	return &APIClientOptions{
+// GetDefaultOptions returns the default options for the API Client
+func GetDefaultOptions() *Options {
+	return &Options{
 		"http://hranoprovod.appspot.com/api/v1/",
 	}
 }
 
 // APIClient the base client structure
 type APIClient struct {
-	aco *APIClientOptions
+	options *Options
 }
 
 // NewAPIClient returns new API Client
-func NewAPIClient(aco *APIClientOptions) *APIClient {
+func NewAPIClient(options *Options) *APIClient {
 	return &APIClient{
-		aco,
+		options,
 	}
 }
 
@@ -63,7 +63,7 @@ func httpRequest(method string, url string, body io.Reader, v interface{}) error
 }
 
 func (ac *APIClient) buildURL(path string, params URLParams) (string, error) {
-	u, err := url.Parse(ac.aco.BaseURL)
+	u, err := url.Parse(ac.options.BaseURL)
 	if err != nil {
 		return "", err
 	}

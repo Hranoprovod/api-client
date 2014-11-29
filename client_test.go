@@ -13,7 +13,7 @@ type URLTestCase struct {
 	err    bool
 }
 
-func TestAccumulator(t *testing.T) {
+func TestAPIClient(t *testing.T) {
 	Convey("Given api client", t, func() {
 		Convey("URL", func() {
 			var testCases = []URLTestCase{
@@ -61,7 +61,7 @@ func TestAccumulator(t *testing.T) {
 				},
 			}
 			for _, tc := range testCases {
-				c := NewAPIClient(&APIClientOptions{tc.base})
+				c := NewAPIClient(&Options{tc.base})
 				result, err := c.buildURL(tc.path, tc.params)
 				So(result, ShouldEqual, tc.result)
 				if tc.err {
