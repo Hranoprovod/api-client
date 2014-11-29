@@ -18,8 +18,8 @@ type Options struct {
 // URLParams is used to add reuqest params to the URL
 type URLParams map[string]string
 
-// GetDefaultOptions returns the default options for the API Client
-func GetDefaultOptions() *Options {
+// NewDefaultOptions returns the default options for the API Client
+func NewDefaultOptions() *Options {
 	return &Options{
 		"http://hranoprovod.appspot.com/api/v1/",
 	}
